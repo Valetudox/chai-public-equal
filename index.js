@@ -6,7 +6,7 @@ module.exports = function(chai, utils) {
   var Assertion = chai.Assertion;
   var assertionPrototype = Assertion.prototype;
 
-  Assertion.addChainableMethod('eqlPublic', function (expected) {
+  Assertion.addChainableMethod('publicEql', function (expected) {
     var actual = utils.flag(this, 'object');
     var showDiff = chai.config.showDiff;
 

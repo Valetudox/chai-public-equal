@@ -26,12 +26,12 @@ var obj = {
 	_d: 'private_value'
 };
 	
-expect(obj).to.eqlPublic({
+expect(obj).to.publicEql({
 	a: 'b',
 	c: 'd'
 });
 //or with 'not'
-expect(obj).to.not.eqlPublic({
+expect(obj).to.not.publicEql({
 	h: 'b'
 });
 ```
