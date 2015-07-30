@@ -27,6 +27,18 @@ describe('Chai Public Equal', function() {
     this.expect(actual).to.publicEql(expected);
   });
 
+  it('should ignore functions', function() {
+    var actual = { a: 1, c: function() { return 1; } };
+    var expected = { a: 1, c: function() { return 2; } };
+    this.expect(actual).to.publicEql(expected);
+  });
+
+  it('should ignore functions on nested object', function() {
+    var actual = { a: 1, b: { d: 1, c: function() { return 1; }  } };
+    var expected = { a: 1, b: { d: 1, c: function() { return 2; } } };
+    this.expect(actual).to.publicEql(expected);
+  });
+
   it('should ignore private properties on nested object', function() {
     var actual = { a: 1, nested: { aa: 2, _bb: 1 } };
     var expected = { a: 1, nested: { aa: 2, _bb: 2 } };
@@ -34,8 +46,8 @@ describe('Chai Public Equal', function() {
   });
 
   it('should ignore properties from the given patterns', function() {
-    var actual = { a: 1, should: 5, b: { c: 1, should: 3 } };
-    var expected = { a: 1, should: 5, b: { c: 1, should: 4 }  };
+    var actual = { a: 1, should: 5, b: { c: 1, should: 3, e: 5 } };
+    var expected = { a: 1, should: 5, b: { c: 1, should: 4, e: 5 }  };
     this.expect(actual).to.publicEql(expected);
   });
 
