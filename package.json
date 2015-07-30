@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha $(find . -name \"*.spec.js\" -not -path \"./node_modules/*\"); karma start;"
+    "test": "NODE_ENV=test mocha $(find . -name \"*.spec.js\" -not -path \"./node_modules/*\");",
+    "browser-test": "karma start"
   },
   "repository": {
     "type": "git",
