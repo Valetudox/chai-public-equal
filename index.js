@@ -1,6 +1,7 @@
 'use strict';
 
-var compareFactory = require('./lib/compare');
+var compare = require('./lib/compare');
+var ObjectTransformer = require('./lib/object-transformer');
 
 module.exports = function(patterns) {
   patterns = patterns || [/^_.+/];
@@ -9,17 +10,19 @@ module.exports = function(patterns) {
     var Assertion = chai.Assertion;
     var assertionPrototype = Assertion.prototype;
 
-    Assertion.addChainableMethod('publicEql', function (expected) {
-      var actual = utils.flag(this, 'object');
+    Assertion.addChainableMethod('publicEql', function(expected) {
       var showDiff = chai.config.showDiff;
-      var compare = compareFactory(patterns);
+      var objectTransformer = new ObjectTransformer(patterns);
+      var actual = utils.flag(this, 'object');
+      var expectedWithoutPrivates = objectTransformer.rejectPrivateProperties(expected);
+      var actualWithoutPrivates = objectTransformer.rejectPrivateProperties(actual);
 
       assertionPrototype.assert.call(this,
-        compare(expected, actual),
-        'expected #{act} to contain public property values #{exp}',
-        'expected #{act} to not contain public property values #{exp}',
-        expected,
-        actual,
+        compare(expectedWithoutPrivates, actualWithoutPrivates),
+        'expected #{act} to have same public properties #{exp}',
+        'expected #{act} to not have same public properties #{exp}',
+        expectedWithoutPrivates,
+        actualWithoutPrivates,
         showDiff
       );
     });
