@@ -1,30 +1,14 @@
 'use strict';
 
-var compare = require('./lib/compare');
-var ObjectTransformer = require('./lib/object-transformer');
+var Plugin = require('./lib/plugin');
 
 module.exports = function(patterns) {
-  patterns = patterns || [/^_.+/];
-
   return function(chai, utils) {
     var Assertion = chai.Assertion;
-    var assertionPrototype = Assertion.prototype;
+    var plugin = new Plugin(chai, utils, patterns);
 
     Assertion.addChainableMethod('publicEql', function(expected) {
-      var showDiff = chai.config.showDiff;
-      var objectTransformer = new ObjectTransformer(patterns);
-      var actual = utils.flag(this, 'object');
-      var expectedWithoutPrivates = objectTransformer.rejectPrivateProperties(expected);
-      var actualWithoutPrivates = objectTransformer.rejectPrivateProperties(actual);
-
-      assertionPrototype.assert.call(this,
-        compare(expectedWithoutPrivates, actualWithoutPrivates),
-        'expected #{act} to have same public properties #{exp}',
-        'expected #{act} to not have same public properties #{exp}',
-        expectedWithoutPrivates,
-        actualWithoutPrivates,
-        showDiff
-      );
+      plugin.test(expected, this);
     });
   };
 };
