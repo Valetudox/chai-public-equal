@@ -33,6 +33,10 @@ describe('Chai Public Equal', function() {
       this.expect(new InterSector(2, 1)).to.publicEql(new InterSector(3, 2));
     });
 
+    it('should not equal by their properties', function() {
+      this.expect(new InterSector(2, 2)).to.not.publicEql(new InterSector(3, 2));
+    });
+
     it('should ignore functions', function() {
       this.expect(new InterSector(2, 1)).to.publicEql(new OtherInterSector(3, 2));
     });
