@@ -1,13 +1,6 @@
 'use strict';
 
-var chai = require('chai');
-var publicEqual = require('./index')([/^_.+/, /^should/]);
-
 describe('Chai Public Equal', function() {
-
-  before(function() {
-    chai.use(publicEqual);
-  });
 
   it('should equal by their properties', function() {
     var actual = { a: 1 };
