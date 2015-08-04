@@ -5,8 +5,8 @@ describe('Chai Public Equal', function() {
   describe('With objects', function() {
 
     it('should equal by their properties', function() {
-      var actual = { a: 1 };
-      var expected = { a: 1 };
+      var actual = { a: 1, c: null };
+      var expected = { a: 1, c: null };
       this.expect(actual).to.publicEql(expected);
     });
 
