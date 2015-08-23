@@ -22,6 +22,13 @@ describe('Chai Public Equal', function() {
       this.expect(actual).to.publicEql(expected);
     });
 
+    it('should match all the property', function() {
+      var first = { a: 1, b: 2, c: 3 };
+      var second = { a: 1, b: 2 };
+      this.expect(first).to.not.publicEql(second);
+      this.expect(second).to.not.publicEql(first);
+    });
+
     it('should ignore functions', function() {
       var actual = { a: 1, c: function() { return 1; } };
       var expected = { a: 1, c: function() { return 2; } };
