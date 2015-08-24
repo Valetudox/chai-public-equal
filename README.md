@@ -19,6 +19,8 @@ var chaiPublicEqual = require('chai-public-equal');
 chai.use(chaiPublicEqual)();
 ```
 
+Public Equal check
+=====
 in your spec.js
 ```js
 var obj = {
@@ -45,6 +47,28 @@ expect(obj).to.not.publicEql({
 	h: 'b'
 });
 ```
+
+Contain publics check
+=====
+in your spec.js
+```js
+var obj = {
+	a: 'b',
+	c: 'd',
+	_d: 'private_value',
+};
+	
+expect(obj).to.containPublics({
+	a: 'b',
+	_d: 'other_private_value'
+});
+
+//or with 'not'
+expect(obj).to.not.publicEql({
+	h: 'b'
+});
+```
+
 
 Custom patterns for public property name checking
 =====
