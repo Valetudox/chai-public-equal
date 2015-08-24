@@ -3,7 +3,7 @@
 "publicEqual" is an object properties matcher for [Chai](http://chaijs.com/) assertion library
 
 This plugin use https://www.npmjs.com/package/deep-equal to check equality. Before compare it removes the private properties based on the given patterns.
-The default pattern is is /^_.+/ 
+The default pattern is /^_.+/ 
 
 Installation
 ===========
