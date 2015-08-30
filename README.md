@@ -64,7 +64,7 @@ expect(obj).to.containPublics({
 });
 
 //or with 'not'
-expect(obj).to.not.publicEql({
+expect(obj).to.not.containPublics({
 	h: 'b'
 });
 ```
