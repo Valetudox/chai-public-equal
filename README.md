@@ -16,7 +16,7 @@ Usage
 ```js
 var chai = require('chai');
 var chaiPublicEqual = require('chai-public-equal');
-chai.use(chaiPublicEqual)();
+chai.use(chaiPublicEqual());
 ```
 
 Public Equal check
@@ -73,6 +73,6 @@ expect(obj).to.not.containPublics({
 Custom patterns for public property name checking
 =====
 
-`chai.use(chaiPublicEqual)([/^_.+/, /^should/]);`
+`chai.use(chaiPublicEqual([/^_.+/, /^should/]));`
  
 
