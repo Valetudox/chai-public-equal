@@ -47,46 +47,4 @@ class ExtendInterSectorWithExtraFunction extends ExtendInterSector {
 
 }
 
-describe('Chai Public Equal', function() {
-
-  describe('#publicEql', function() {
-
-    describe('with classes', function () {
-
-      it('should equal by their properties', function () {
-        this.expect(new InterSector(2, 1)).to.publicEql(new InterSector(3, 2));
-      });
-
-      it('should not equal by their properties', function () {
-        this.expect(new InterSector(2, 2)).to.not.publicEql(new InterSector(3, 2));
-      });
-
-      it('should ignore functions', function () {
-        this.expect(new InterSector(2, 1)).to.publicEql(new OtherInterSector(3, 2));
-      });
-
-    });
-
-  });
-
-  describe('#containPublics', function() {
-
-    describe('with classes', function () {
-
-      it('should equal by their properties', function () {
-        this.expect(new ExtendInterSector(2, 1)).to.containPublics(new InterSector(3, 2));
-      });
-
-      it('should not equal by their properties', function () {
-        this.expect(new ExtendInterSector(2, 2)).to.not.containPublics(new InterSector(3, 2));
-      });
-
-      it('should ignore functions', function () {
-        this.expect(new OtherInterSector(2, 1)).to.containPublics(new InterSector(3, 2));
-      });
-
-    });
-
-  });
-
-});
+module.exports = { InterSector, ExtendInterSector, OtherInterSector, ExtendInterSectorWithExtraFunction };
