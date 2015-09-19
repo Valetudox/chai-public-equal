@@ -4,8 +4,8 @@ let Plugin = require('./lib/plugin');
 let publicEqlAssert = require('./asserts/public-eql');
 let containPublicsAssert = require('./asserts/contain-publics');
 
-module.exports = function(patterns) {
-  return function(chai, utils) {
+module.exports = (patterns) => {
+  return (chai, utils) => {
     let Assertion = chai.Assertion;
     let publicEqlAssertPlugin = new Plugin(chai, utils, patterns, publicEqlAssert);
     let containPublicsAssertPlugin = new Plugin(chai, utils, patterns, containPublicsAssert);
@@ -19,5 +19,4 @@ module.exports = function(patterns) {
     });
   };
 };
-
 

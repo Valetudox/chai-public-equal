@@ -94,7 +94,7 @@ describe('#containPublics', function() {
     it('should work with nested arrays full of objects', function() {
       this.expect(
         { a: 1, d: [{ e: 'a', _g: 4 }] }
-      ).to.publicEql(
+      ).to.containPublics(
         { a: 1, d: [{ e: 'a', _p: 4 }] }
       );
       this.expect(
@@ -123,11 +123,41 @@ describe('#containPublics', function() {
         );      
       });
 
-      it.skip('should ignore the order', function() {
+      it('should ignore the order', function() {
         this.expect(
           [2, 1, 3]
         ).to.containPublics(
           [3, 1]
+        );      
+      });
+
+    });
+
+    describe('full of objects', function() {
+
+      it('should check for contains', function() {
+        this.expect(
+          [{ a: 1 }, { b: 2 }]
+        ).to.containPublics(
+          [{ a: 1 }]
+        );      
+        this.expect(
+          [{ a: 1 }]
+        ).to.not.containPublics(
+          [{ a: 1 }, { b: 2 }]
+        );      
+        this.expect(
+          [{ a: 1 }]
+        ).to.not.containPublics(
+          [{ a: 2 }]
+        );      
+      });
+
+      it('should ignore the order', function() {
+        this.expect(
+          [{ a: 1 }, { b: 2 }, { c: 3 }]
+        ).to.containPublics(
+          [{ c: 3 }, { a: 1 }]
         );      
       });
 
