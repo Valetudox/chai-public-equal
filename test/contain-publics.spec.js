@@ -133,11 +133,16 @@ describe('#containPublics', function() {
 
     });
 
-    describe('full of objects', function() {
+    describe('full of simple objects', function() {
 
       it('should check for contains', function() {
         this.expect(
           [{ a: 1 }, { b: 2 }]
+        ).to.containPublics(
+          [{ a: 1 }]
+        );      
+        this.expect(
+          [{ a: 1, aa: 2 }, { b: 2 }]
         ).to.containPublics(
           [{ a: 1 }]
         );      
@@ -158,6 +163,58 @@ describe('#containPublics', function() {
           [{ a: 1 }, { b: 2 }, { c: 3 }]
         ).to.containPublics(
           [{ c: 3 }, { a: 1 }]
+        );      
+      });
+
+    });
+
+    describe('full of nested objects', function() {
+
+      it('should check for contains', function() {
+        this.expect(
+          [{ a: { aa: 1, ab: 2 }}, { b: 2 }]
+        ).to.containPublics(
+          [{ a: { aa: 1 } }]
+        );      
+        this.expect(
+          [{ a: { aa: 1 } }]
+        ).to.not.containPublics(
+          [{ a: { aa: 2 } }]
+        );      
+      });
+
+      it('should handle nested arrays and object without noticing the order', function() {
+        this.expect(
+          [{
+            a: {
+              aa: 1,
+              ab: [{
+                  aba: 1
+                }, {
+                  abb: 2,
+                  abc: 3
+                },
+                5
+              ]
+            },
+            b: 2
+          },
+          99,
+          98
+        ]
+        ).to.containPublics(
+          [
+            98, {
+            a: {
+              ab: [5, {
+                abb: 2
+              }, {
+                aba: 1
+              }]
+            },
+            b: 2
+          }
+          ]
         );      
       });
 

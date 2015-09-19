@@ -25,6 +25,7 @@
   "dependencies": {
     "deep-equal": "^1.0.0",
     "getallpropertynames": "^0.1.3",
+    "is-native-type": "^1.0.3",
     "lodash": "^3.10.0"
   },
   "devDependencies": {
