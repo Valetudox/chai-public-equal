@@ -7,9 +7,7 @@ module.exports = {
   compare: function(expected, actual) {
     return equal(expected, actual);
   },
-  transform: function(patterns, obj) {
-	return rejectKeys(obj, patterns);
-  },
+  transform: rejectKeys,
   expectationMessage: 'expected #{act} to have same public properties #{exp}',
   expectationNotMessage: 'expected #{act} to not have same public properties #{exp}'
 };

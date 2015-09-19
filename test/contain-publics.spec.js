@@ -108,37 +108,29 @@ describe('#containPublics', function() {
 
   describe('with arrays', function() {
 
-    it('should work with arrays full of scalars', function() {
-      this.expect(
-        [2, 1, 3]
-      ).to.containPublics(
-        [2, 1]
-      );
+    describe('full of scalars', function() {
 
-      this.expect(
-        [2, 1]
-      ).to.not.containPublics(
-        [1, 2]
-      );
-      this.expect(
-        [3]
-      ).to.not.containPublics(
-        [4]
-      );
+      it('should check for contains', function() {
+        this.expect(
+          [2, 1, 3]
+        ).to.containPublics(
+          [2, 1]
+        );      
+        this.expect(
+          [2, 1]
+        ).to.not.containPublics(
+          [2, 1, 3]
+        );      
+      });
 
-    });
+      it.skip('should ignore the order', function() {
+        this.expect(
+          [2, 1, 3]
+        ).to.containPublics(
+          [3, 1]
+        );      
+      });
 
-    it('should work with arrays full of objects', function() {
-      this.expect(
-        [{ a: 1, _b: 2 }, { a: 2 }]
-      ).to.containPublics(
-        [{ a: 1, _b: 3 }]
-      );
-      this.expect(
-        [{ a: 1, _b: 2 }]
-      ).to.not.containPublics(
-        [{ a: 2, _b: 3 }]
-      );
     });
 
   });
