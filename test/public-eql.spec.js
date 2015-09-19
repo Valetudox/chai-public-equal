@@ -132,12 +132,7 @@ describe('#publicEql', function() {
         [2, 1]
       ).to.publicEql(
         [2, 1]
-      );
-      this.expect(
-        [2, 1]
-      ).to.not.publicEql(
-        [1, 2]
-      );
+      );      
       this.expect(
         [3]
       ).to.not.publicEql(
@@ -147,14 +142,27 @@ describe('#publicEql', function() {
 
     it('should work with arrays full of objects', function() {
       this.expect(
-        [{ a: 1, _b: 2 }]
+        [{ a: 1, _b: 2 }, { c: 1 }]
       ).to.publicEql(
-        [{ a: 1, _b: 3 }]
+        [{ a: 1, _b: 3 }, { c: 1 }]
       );
       this.expect(
         [{ a: 1, _b: 2 }]
       ).to.not.publicEql(
         [{ a: 2, _b: 3 }]
+      );
+    });
+
+    it('should not ignore the order', function() {
+      this.expect(
+        [2, 1]
+      ).to.not.publicEql(
+        [1, 2]
+      );
+      this.expect(
+        [{ a: 1 }, { b: 2 }]
+      ).not.to.publicEql(
+        [{ b: 2 }, { a: 1 }]
       );
     });
 
