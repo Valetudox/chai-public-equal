@@ -2,6 +2,21 @@
 
 describe('#publicEql', function() {  
 
+  describe('With scalars', function() {
+
+    it('should equal by the value', function() {
+      this.expect(1).to.publicEql(1);
+      this.expect('a').to.publicEql('a');
+      this.expect(undefined).to.publicEql(undefined);
+      this.expect(null).to.publicEql(null);
+
+      this.expect(1).to.not.publicEql(2);
+      this.expect('a').to.not.publicEql('b');
+      this.expect(null).to.not.publicEql(0);
+    });
+
+  });
+
   describe('With simple objects', function() {
 
     it('should equal by their properties', function() {
@@ -163,6 +178,19 @@ describe('#publicEql', function() {
         [{ a: 1 }, { b: 2 }]
       ).not.to.publicEql(
         [{ b: 2 }, { a: 1 }]
+      );
+    });
+
+    it('should check for every items', function() {
+      this.expect(
+        [1, 2]
+      ).to.not.publicEql(
+        [1, 2, 3]
+      );
+      this.expect(
+        [1, 2, 3]
+      ).to.not.publicEql(
+        [1, 2]
       );
     });
 
