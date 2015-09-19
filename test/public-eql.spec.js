@@ -165,10 +165,9 @@ describe('#publicEql', function() {
 
     it('should equal by their properties', function () {
       this.expect(new InterSector(2, 1)).to.publicEql(new InterSector(3, 2));
-    });
-
-    it('should not equal by their properties', function () {
+      this.expect(new InterSector(2, 1)).to.publicEql({ intersection: 1 });
       this.expect(new InterSector(2, 2)).to.not.publicEql(new InterSector(3, 2));
+      this.expect(new InterSector(2, 1)).to.not.publicEql({ intersection: 2 });
     });
 
     it('should ignore functions', function () {
