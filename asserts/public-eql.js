@@ -1,9 +1,11 @@
 'use strict';
 
-var comparer = require('./../lib/comparer');
+let equal = require('deep-equal');
 
 module.exports = {
-  compare: comparer.deepMatch,
+  compare: function(expected, actual) {
+    return equal(expected, actual);
+  },
   expectationMessage: 'expected #{act} to have same public properties #{exp}',
   expectationNotMessage: 'expected #{act} to not have same public properties #{exp}'
 };
