@@ -2,24 +2,11 @@
 
 describe('#publicEql', function() {  
 
-  describe('With objects', function() {
+  describe('With simple objects', function() {
 
     it('should equal by their properties', function() {
       this.expect({ a: 1, c: null }).to.publicEql({ c: null, a: 1 });
       this.expect({ a: 1, c: null }).to.not.publicEql({ a: 1, c: 2 });
-    });
-
-    it('should compare nested objects by value not reference', function() {
-      this.expect(
-        { a: 1, nested: { aa: 2 } }
-      ).to.publicEql(
-        { a: 1, nested: { aa: 2 } }
-      );
-      this.expect(
-        { a: 1, nested: { aa: 1 } }
-      ).to.not.publicEql(
-        { a: 1, nested: { aa: 2 } }
-      );
     });
 
     it('should ignore private properties', function() {
@@ -57,6 +44,23 @@ describe('#publicEql', function() {
       ).to.publicEql(
         { a: 1, c: function() { return 2; } }
       );      
+    });
+
+  });
+
+  describe('With nested objects', function() {
+
+    it('should compare by value not reference', function() {
+      this.expect(
+        { a: 1, nested: { aa: 2 } }
+      ).to.publicEql(
+        { a: 1, nested: { aa: 2 } }
+      );
+      this.expect(
+        { a: 1, nested: { aa: 1 } }
+      ).to.not.publicEql(
+        { a: 1, nested: { aa: 2 } }
+      );
     });
 
     it('should ignore private properties on nested object', function() {
@@ -154,7 +158,7 @@ describe('#publicEql', function() {
       );
     });
 
-  })
+  });
 
   describe('with classes', function () {
 
