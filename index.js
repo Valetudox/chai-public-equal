@@ -1,21 +1,24 @@
 'use strict';
 
 let Plugin = require('./lib/plugin');
-let publicEqlAssert = require('./asserts/public-eql');
-let containPublicsAssert = require('./asserts/contain-publics');
+let _ = require('lodash');
+
+const asserts = {
+  publicEql: require('./asserts/public-eql'),
+  containPublics: require('./asserts/contain-publics'),
+  sameElements: require('./asserts/same-elements')
+};
 
 module.exports = (patterns) => {
   return (chai, utils) => {
     let Assertion = chai.Assertion;
-    let publicEqlAssertPlugin = new Plugin(chai, utils, patterns, publicEqlAssert);
-    let containPublicsAssertPlugin = new Plugin(chai, utils, patterns, containPublicsAssert);
 
-    Assertion.addChainableMethod('publicEql', function(expected) {
-      publicEqlAssertPlugin.test(expected, this);
-    });
+    _.forEach(asserts, (asserter, name) => {
+      let assertPlugin = Plugin.create(chai, utils, patterns, asserter);
 
-    Assertion.addChainableMethod('containPublics', function(expected) {
-      containPublicsAssertPlugin.test(expected, this);
+      Assertion.addChainableMethod(name, function(expected) {
+        assertPlugin.test(expected, this);
+      });
     });
   };
 };
