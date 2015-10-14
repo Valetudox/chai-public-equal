@@ -1,7 +1,7 @@
 'use strict';
 
-let equal = require('deep-equal');
-let rejectKeys = require('../lib/reject-keys');
+var equal = require('deep-equal');
+var rejectKeys = require('../lib/reject-keys');
 
 module.exports = {
   compare: equal,

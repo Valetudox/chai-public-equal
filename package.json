@@ -4,13 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha test;",
-    "browser-test": "karma start"
-  },
-  "browserify": {
-    "transform": [
-      "babelify"
-    ]
+    "test": "NODE_ENV=test mocha test;"
   },
   "repository": {
     "type": "git",
@@ -30,10 +24,6 @@
   },
   "devDependencies": {
     "chai": "^3.2.0",
-    "karma": "^0.13.3",
-    "karma-browserify": "^4.2.1",
-    "karma-chrome-launcher": "^0.2.0",
-    "karma-mocha": "^0.2.0",
     "mocha": "^2.2.5"
   }
 }

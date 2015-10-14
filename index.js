@@ -1,19 +1,19 @@
 'use strict';
 
-let Plugin = require('./lib/plugin');
-let _ = require('lodash');
+var Plugin = require('./lib/plugin');
+var _ = require('lodash');
 
-const asserts = {
+var asserts = {
   publicEql: require('./asserts/public-eql'),
   containPublics: require('./asserts/contain-publics'),
   sameElements: require('./asserts/same-elements')
 };
 
-module.exports = (patterns) => {
-  return (chai, utils) => {
+module.exports = function(patterns) {
+  return function(chai, utils) {
     let Assertion = chai.Assertion;
 
-    _.forEach(asserts, (asserter, name) => {
+    _.forEach(asserts, function(asserter, name) {
       let assertPlugin = Plugin.create(chai, utils, patterns, asserter);
 
       Assertion.addChainableMethod(name, function(expected) {

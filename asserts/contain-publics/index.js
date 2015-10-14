@@ -1,8 +1,8 @@
 'use strict';
 
-let _ = require('lodash');
-let rejectKeys = require('../../lib/reject-keys');
-let compare = require('./compare');
+var _ = require('lodash');
+var rejectKeys = require('../../lib/reject-keys');
+var compare = require('./compare');
 
 module.exports = {
   compare: compare,
