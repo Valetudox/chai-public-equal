@@ -3,11 +3,11 @@
 var _ = require('lodash');
 var typeChecker = require('is-native-type');
 
-let compare = (expected, actual) => {
+var compare = function(expected, actual) {
   if (typeof(actual) !== typeof(expected)) return false;
   if (typeChecker.isScalar(expected)) return expected === actual;
 
-  if (Array.isArray(expected)) {
+  if (_.isArray(expected)) {
     return _.every(expected, function(a) {
       return _.some(actual, function(b) {
         return compare(a, b);

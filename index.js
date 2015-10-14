@@ -11,10 +11,10 @@ var asserts = {
 
 module.exports = function(patterns) {
   return function(chai, utils) {
-    let Assertion = chai.Assertion;
+    var Assertion = chai.Assertion;
 
     _.forEach(asserts, function(asserter, name) {
-      let assertPlugin = Plugin.create(chai, utils, patterns, asserter);
+      var assertPlugin = Plugin.create(chai, utils, patterns, asserter);
 
       Assertion.addChainableMethod(name, function(expected) {
         assertPlugin.test(expected, this);
